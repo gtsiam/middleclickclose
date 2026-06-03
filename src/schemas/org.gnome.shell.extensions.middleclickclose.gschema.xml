@@ -29,7 +29,7 @@
     <key type="b" name="keyboard-close">
       <default>true</default>
       <summary>Close with keyboard</summary>
-      <description>Allow closing windows in overview via keyboard shortcuts.</description>
+      <description>Allow closing windows in overview via keyboard shortcut set in Gnome Settings -> Keyboard Shortcuts.</description>
     </key>
     <key type="i" name="rearrange-delay">
       <default>750</default>
