@@ -10,7 +10,7 @@ GNOME shell extension for quickly closing apps in the overview.
   click. The mouse button that will trigger closing can be adjusted in the settings.
 - **`Alt+F4` in the overview**: When triggering the close action (typically `Alt+F4`), the focused
   window will be closed. This can be turned off in the settings.
-  The keybind can be changed in Gnome Settings > Keyboard > Keyboard Shortcuts > Close Window shortcut
+  The keybind can be changed in Gnome Settings -> Keyboard -> Keyboard Shortcuts -> Close Window shortcut
 - **Adjustable rearrange delay**: After closing an application, GNOME will wait a bit before
   rearranging the remaining windows. This extension allows configuring that delay.
 
