@@ -8,51 +8,51 @@ GNOME shell extension for quickly closing apps in the overview.
 
 - **Middle click to close**: Just hover over the app you want to close in the overview, and middle
   click. The mouse button that will trigger closing can be adjusted in the settings.
-- **`Alt+F4` in the overview**: When triggering the close action (typically `Alt+F4`), the focused
-  window will be closed. This can be turned off in the settings.
-  The keybind can be changed in Gnome Settings -> Keyboard -> Keyboard Shortcuts -> Close Window shortcut
+- **`Alt+F4` in the overview**: When triggering the close action (typically `Alt+F4`), the
+  keyboard-focused window will be closed. This can be turned off in the settings. The keybind can be
+  changed in Gnome Settings -> Keyboard -> Keyboard Shortcuts -> Close Window shortcut
 - **Adjustable rearrange delay**: After closing an application, GNOME will wait a bit before
   rearranging the remaining windows. This extension allows configuring that delay.
 
 ## Building
 
-Make sure `gettext` is installed on your system and the `gnome-extensions` executable is available
-on your `PATH` (It is typically bundled with `gnome-shell`).
+Make sure the `gnome-extensions` executable is available on your `PATH` (It is typically bundled
+with `gnome-shell`).
 
-Afterwards, simply run `make` to build a zip suitable for submission to
-[EGO](https://extensions.gnome.org/).
+`make pack` will build a zip suitable for submission to [EGO](https://extensions.gnome.org/).
 
-`make install` can also be used to install the extension for the current user.
+`make install` will install the extension for the current user.
+
+`make install-system` will install the extension system-wide (By default, in /usr/local).
 
 ## Packaging
 
 ```bash
-# Build
+# Explicitly build extension package (optional)
 make pack
 
-# Install
-make install-system PREFIX=/usr
+# Install system-wide (by default, PREFIX=/usr/local)
+make install-system PREFIX="$pkgdir/usr"
 ```
 
-For a successful build, these binaries need to be present:
+For a successful build, ensure these binaries are present:
 - `gnome-extensions`
 - `glib-compile-schemas`
 - `unzip`
 
 ## Translations
 
-If you're interested in contributing a translation, import the translation template file under
+If you're interested in contributing a translation, import the translation template under
 `src/po/template.pot` to your favourite po-editing software and create a `*.po` file under `src/po`.
 
-To update all existing translations after changing the code, run `make po`. To regenerate only the
-`template.pot` file, run `make pot`.
+To update existing translations after changing the code, run `make po`.
 
 ## Debugging
 
 - `journalctl -f --user` is your friend.
-- `make install && dbus-run-session -- gnome-shell --nested --wayland` allows for quick prototyping
-  without having to log out and back in every single time when running under wayland.
-  - For Gnome 49+, this becomes `gnome-shell --devkit`, which needs `mutter-devkit` to be installed.
-  - Running `dbus-run-session -- $SHELL` and then `make install && gnome-shell --devkit` inside the
-    spawned shell can make for a much faster debugging cycle.
+- For quick prototyping on wayland, use:
+  - On Gnome >=49: `make install && dbus-run-session -- gnome-shell --devkit`.
+  - On Gnome  <49: `make install && dbus-run-session -- gnome-shell --nested --wayland`.
+- Running `dbus-run-session -- $SHELL` and then `make install && gnome-shell [..]` inside the
+  spawned shell can make for a much faster debugging cycle.
 - `make install`, then `Alt+F2`, `r` and `Enter` allow for quick prototyping under X11.

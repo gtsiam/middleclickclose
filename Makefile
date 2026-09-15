@@ -1,38 +1,46 @@
-UUID := middleclickclose@paolo.tranquilli.gmail.com
-POT_SOURCE_FILES := $(wildcard src/schemas/*.gschema.xml src/*.js)
-SOURCE_FILES := ${POT_SOURCE_FILES} src/metadata.json
-EXTRA_SOURCE_FILES := settingsWatch.js
-
 PREFIX ?= /usr/local
-EXTENSION_DIR := $(abspath ${PREFIX}/share/gnome-shell/extensions/${UUID})
 
+include lib.mk
+UUID := middleclickclose@paolo.tranquilli.gmail.com
+
+.PHONY: all
 all: pack
 
-pack: ${UUID}.shell-extension.zip
+# Package extension
+.PHONY: pack
+pack: $(UUID).shell-extension.zip
 
-install: pack
-	gnome-extensions install --force ${UUID}.shell-extension.zip
+# Install extension for the local user
+.PHONY: install
+install: $(UUID).shell-extension.zip
+	$(call cmd,install-user-extension,$(UUID).shell-extension.zip)
 
-install-system: pack
-	mkdir -p "${EXTENSION_DIR}"
-	unzip -o ${UUID}.shell-extension.zip -d "${EXTENSION_DIR}"
-	glib-compile-schemas "${EXTENSION_DIR}/schemas"
+# Install extension system-wide at the specified prefix
+.PHONY: install-system
+install-system: $(UUID).shell-extension.zip
+	$(call cmd,install-system-extension,$(UUID).shell-extension.zip,\
+		$(PREFIX)/share/gnome-shell/extensions/$(UUID))
 
-po: $(wildcard src/po/*.po)
-pot: src/po/template.pot
+# Update translation files - only regenerate the template if explicitly requested.
+src/po/template.pot: $(if $(filter %po %pot,$(MAKECMDGOALS)),,|) \
+	$(wildcard src/schemas/*.gschema.xml src/*.js)
 
+PO_FILES := $(wildcard src/po/*.po)
+$(PO_FILES): src/po/template.pot
+
+.PHONY: po
+po: $(PO_FILES)
+
+# Check source code
+.PHONY: check
+check: $(UUID).shell-extension.zip .venv/bin/shexli
+	@.venv/bin/shexli $(UUID).shell-extension.zip
+
+# Install shexli
+.venv/bin/shexli: .venv
+	$(call cmd,py-package,shexli)
+
+# Clean artifacts
+.PHONY: clean
 clean:
-	rm -f ${UUID}.shell-extension.zip
-
-.PHONY: clean all install install-system po pot pack
-
-# ---
-
-${UUID}.shell-extension.zip: ${SOURCE_FILES}
-	gnome-extensions pack --force src/ $(addprefix --extra-source=,${EXTRA_SOURCE_FILES})
-
-src/po/template.pot: ${POT_SOURCE_FILES}
-	xgettext -F --from-code=UTF-8 --output=src/po/template.pot ${POT_SOURCE_FILES}
-
-src/po/%.po: pot
-	msgmerge --quiet --backup off --update $@ src/po/template.pot
+	$(call clean_ignored)
