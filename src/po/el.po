@@ -1,18 +1,17 @@
-# George Tsiamasiotis <gtsiam@windowslive.com>, 2025.
-
+# George Tsiamasiotis <george@tsiamasiotis.gr>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-shell-extensions-middleclickclose\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 10:02+0300\n"
-"PO-Revision-Date: 2025-04-17 08:42+0300\n"
-"Last-Translator: George Tsiamasiotis <gtsiam@windowslive.com>\n"
+"POT-Creation-Date: 2026-06-03 19:38+0300\n"
+"PO-Revision-Date: 2026-09-15 08:57+0300\n"
+"Last-Translator: George Tsiamasiotis <george@tsiamasiotis.gr>\n"
 "Language-Team: \n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.9\n"
 
 #: src/prefs.js:31
 msgid "Primary"
@@ -75,10 +74,12 @@ msgid "Close with keyboard"
 msgstr "Κλείσιμο με πληκτρολόγιο"
 
 #: src/schemas/org.gnome.shell.extensions.middleclickclose.gschema.xml:32
-msgid "Allow closing windows in overview via keyboard shortcuts."
+msgid ""
+"Allow closing windows in overview via keyboard shortcut set in Gnome "
+"Settings -> Keyboard Shortcuts."
 msgstr ""
 "Επιτρέπει το κλείσιμο παραθύρων στην επισκόπηση μέσω συντομεύσεων "
-"πληκτρολογίου."
+"πληκτρολογίου από το Ρυθμίσεις Gnome -> Συντομεύσεις Πληκτρολογίου."
 
 #: src/schemas/org.gnome.shell.extensions.middleclickclose.gschema.xml:37
 msgid "Rearrange delay"

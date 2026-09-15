@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-shell-extensions-middleclickclose\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 10:02+0300\n"
+"POT-Creation-Date: 2026-06-03 19:38+0300\n"
 "PO-Revision-Date: 2024-11-18 22:00+0100\n"
 "Last-Translator: derVedro\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,10 @@ msgid "Close with keyboard"
 msgstr "Закрытие клавиатурой"
 
 #: src/schemas/org.gnome.shell.extensions.middleclickclose.gschema.xml:32
-msgid "Allow closing windows in overview via keyboard shortcuts."
+#, fuzzy
+msgid ""
+"Allow closing windows in overview via keyboard shortcut set in Gnome "
+"Settings -> Keyboard Shortcuts."
 msgstr "Разрешить закрытие окон в овервью с помощью связки клавиш."
 
 #: src/schemas/org.gnome.shell.extensions.middleclickclose.gschema.xml:37
